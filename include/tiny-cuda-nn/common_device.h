@@ -799,15 +799,15 @@ __host__ __device__ inline uint64_t morton3D_64bit(const ivec3& p) {
 }
 
 __device__ inline float smoothstep(float val) {
-	return val*val*(3.0f - 2.0f * val);
+	return val*val*val*(6.0*val*val - 15.0*val + 10.0); 	// return val*val*(3.0f - 2.0f * val);
 }
 
 __device__ inline float smoothstep_derivative(float val) {
-	return 6*val*(1.0f - val);
+	return 30.0*val*val*(val*val - 2.0*val + 1.0); 	// return 6*val*(1.0f - val);
 }
 
 __device__ inline float smoothstep_2nd_derivative(float val) {
-	return 6.0f - 12.0f * val;
+	return 60.0*val*(2.0*val*val - 3.0*val + 1.0); // return 6.0f - 12.0f * val;
 }
 
 __device__ inline float identity_fun(float val) {
